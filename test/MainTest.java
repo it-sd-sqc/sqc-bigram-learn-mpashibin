@@ -60,5 +60,17 @@ class MainTest {
     );
   }
 
-  // TODO: Create your test(s) below. /////////////////////////////////////////
+    // TODO: Create your test(s) below. /////////////////////////////////////////
+    @Test
+    void createBigrams() {
+      assertDoesNotThrow(
+              () -> {
+                  Connection db = Main.createConnection();
+                  String input = " this and THIS ";
+                  Main.createBigrams(db, input);
+                  int wordCount = Main.getWordCount(db);
+                  assertEquals(2, wordCount);
+                  db.close();
+              });
+    }
 }
